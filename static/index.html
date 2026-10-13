@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>From Transistors to Qubits - Learning Framework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="#/home"><b>Transistor</b>&#8201;to&#8201;<i>Qubit</i></a>
+  <a class="link" data-route="home" href="#/home">Home</a>
+  <a class="link" data-route="A" href="#/A">A &middot; Transistor</a>
+  <a class="link" data-route="B" href="#/B">B &middot; Logic gates</a>
+  <a class="link" data-route="C" href="#/C">C &middot; Quantum</a>
+  <a class="link" data-route="D" href="#/D">D &middot; Comparison</a>
+  <a class="link" data-route="assess" href="#/assess">Assessment</a>
+</nav>
+
+<!-- ===================== HOME ===================== -->
+<main class="view" id="view-home">
+  <section class="hero">
+    <div>
+      <h1><em>Transistors</em> to <span class="qq">qubits</span></h1>
+      <p class="lede">You already know how a transistor turns a voltage into a 0 or a 1. Start there, build up through logic gates, and arrive at superposition, quantum gates and measurement, with a simulator for every step.</p>
+      <div class="row"><a class="btn primary" href="#/A">Start with the transistor</a><a class="btn" href="#/assess">Take the pre-test</a></div>
+    </div>
+    <div class="bench" aria-label="Bit versus qubit demo">
+      <div>
+        <h3>A bit</h3>
+        <div class="led" id="h-led"></div>
+        <div class="bigbit" id="h-bit">0</div>
+        <button class="btn primary" id="h-flip">Set V<sub>in</sub> = 1</button>
+        <span class="muted small">Always the value you set.</span>
+      </div>
+      <div>
+        <h3>A qubit</h3>
+        <div class="coin" id="h-coin">|0&#10217;</div>
+        <div class="tally" id="h-tally"><div class="z" style="height:20px">0</div><div style="height:20px">0</div></div>
+        <div class="row"><button class="btn q sm" id="h-hada">Apply H</button><button class="btn sm" id="h-meas">Measure</button><button class="btn sm" id="h-reset">Reset</button></div>
+        <span class="muted small" id="h-msg">Starts as |0&#10217;. Apply H, then measure repeatedly.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Four modules, four levels</h2>
+    <div class="grid g4">
+      <a class="mcard c" href="#/A"><span class="big">A</span><h3>Transistor simulator</h3><p>Vary gate voltage, threshold and load. Watch an LED switch and read off the bit.</p><span class="pill">Level 1</span></a>
+      <a class="mcard c" href="#/B"><span class="big">B</span><h3>Logic-gate simulator</h3><p>NOT, AND, OR, NAND, NOR, XOR with truth tables, NAND-only builds and a CMOS inverter curve.</p><span class="pill">Level 2</span></a>
+      <a class="mcard qq" href="#/C"><span class="big">C</span><h3>Quantum simulator</h3><p>Qubit explorer with a Bloch sphere, plus a circuit builder with X, H, Z, CNOT and measurement.</p><span class="pill q">Level 3</span></a>
+      <a class="mcard qq" href="#/D"><span class="big">D</span><h3>Comparison and noise</h3><p>Run one function both ways, then compare transistor noise with decoherence and error correction.</p><span class="pill q">Level 4</span></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>The learning path</h2>
+    <div class="path">
+      <div><b>Level 1: Transistor</b><span class="small muted">Vin = 0 gives OFF, Vin = 1 gives ON. A voltage becomes a classical bit.</span></div>
+      <div><b>Level 2: Logic gate</b><span class="small muted">A transistor NOT gate, then X|0&#10217; = |1&#10217; as its quantum counterpart.</span></div>
+      <div><b>Level 3: Bit to qubit</b><span class="small muted">One new idea: amplitudes. H|0&#10217; gives P(0) = P(1) = 50%.</span></div>
+      <div><b>Level 4: Circuit vs circuit</b><span class="small muted">Same function, two machines. Then noise, decoherence and error correction.</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Concept map</h2>
+    <div class="panel"><table>
+      <tr><th>Electronics concept</th><th class="c">What you already know</th><th class="q">Quantum counterpart</th></tr>
+      <tr><td>Transistor</td><td>Electronic switching device</td><td>Qubit as the quantum information unit</td></tr>
+      <tr><td>ON / OFF</td><td>0 / 1</td><td>Measurement gives 0 or 1</td></tr>
+      <tr><td>Voltage / current state</td><td>Physical representation of information</td><td>Quantum state and amplitudes</td></tr>
+      <tr><td>Logic gate</td><td>AND, OR, NOT</td><td>X, Y, Z, H, CNOT gates</td></tr>
+      <tr><td>NOT gate</td><td>Inverts 0 and 1</td><td>X gate: quantum bit flip</td></tr>
+      <tr><td>Digital circuit</td><td>Combination of logic gates</td><td>Quantum circuit</td></tr>
+      <tr><td>Noise</td><td>Disturbs the transistor signal</td><td>Decoherence and quantum noise</td></tr>
+      <tr><td>Measurement</td><td>Reading the circuit output</td><td>Quantum measurement</td></tr>
+    </table></div>
+  </section>
+</main>
+
+<!-- ===================== MODULE A ===================== -->
+<main class="view" id="view-A">
+  <header class="mhead"><div><span class="pill">Level 1</span><h1 style="font-size:clamp(2rem,4vw,3.2rem)">Module A: the transistor as a switch</h1><p>Input &rarr; transistor &rarr; LED. Vary the input and read the classical bit from what the circuit does.</p></div><div class="lvl">A</div></header>
+
+  <section class="section"><h2>Theory</h2>
+    <div class="grid g3">
+      <div class="panel"><h3>The switch model (BJT)</h3>
+        <p>An NPN transistor conducts only when the base-emitter junction is forward biased. Base current is set by the base resistor; collector current follows until the load limits it.</p>
+        <div class="formula">$$I_B=\frac{V_{in}-V_{BE}}{R_B},\qquad I_C=\min\!\left(\beta I_B,\; \frac{V_{CC}-V_{CE,sat}}{R_L}\right)$$</div>
+        <div class="formula">$$V_{out}=V_{CC}-I_C R_L$$</div></div>
+      <div class="panel"><h3>The switch model (MOSFET)</h3>
+        <p>An NMOS transistor conducts when the gate-source voltage exceeds the threshold. With a resistive load it moves from cutoff to saturation to the triode (ohmic) region.</p>
+        <div class="formula">$$I_D=\tfrac{k}{2}(V_{GS}-V_{th})^2\quad (V_{DS}\ge V_{GS}-V_{th})$$</div>
+        <div class="formula">$$I_D=k\!\left[(V_{GS}-V_{th})V_{DS}-\tfrac{V_{DS}^2}{2}\right]\quad (\text{triode})$$</div></div>
+      <div class="panel"><h3>From voltage to bit</h3>
+        <p>Information is stored as a voltage level, then compared to a threshold. Below it we read 0, above it 1. This is the whole idea of a classical bit.</p>
+        <div class="formula">$$b=\begin{cases}1 & V_{in}>V_{th}\\ 0 & V_{in}\le V_{th}\end{cases}$$</div>
+        <div class="formula">$$P_{diss}=V_{CE}\,I_C$$</div>
+        <p class="small muted">The LED sits in series with the load: its brightness follows I<sub>C</sub>. A common-emitter stage also inverts: when the transistor is ON, V<sub>out</sub> is low. That is the NOT gate of Module B.</p></div>
+    </div>
+  </section>
+
+  <section class="section"><h2>Simulation <small>change anything, the circuit updates live</small></h2>
+    <div class="grid g2">
+      <div class="panel"><div class="seg" id="a-device"><button data-v="bjt" class="on">BJT (NPN)</button><button data-v="mosfet">MOSFET (NMOS)</button></div>
+        <div id="a-controls"></div>
+        <div class="row"><button class="btn sm" id="a-low">Vin = 0 (logic 0)</button><button class="btn sm" id="a-high">Vin = V<sub>CC</sub> (logic 1)</button></div>
+      </div>
+      <div class="panel"><svg id="a-svg" class="schem" viewBox="0 0 330 320" role="img" aria-label="Transistor switching circuit with load resistor and LED">
+        <text x="210" y="16" text-anchor="middle">+VCC</text>
+        <line x1="210" y1="22" x2="210" y2="50"/>
+        <polyline points="210,50 210,58 224,64 196,76 224,88 196,100 210,106 210,112"/>
+        <text x="234" y="84">R_L</text>
+        <circle id="a-glow" cx="210" cy="138" r="34"/>
+        <line x1="210" y1="112" x2="210" y2="124"/>
+        <polyline id="a-led" points="195,124 225,124 210,148 195,124"/>
+        <line x1="195" y1="150" x2="225" y2="150"/>
+        <line x1="210" y1="150" x2="210" y2="172"/>
+        <text x="236" y="142">LED</text>
+        <circle cx="210" cy="172" r="3.5"/><text x="222" y="176">Vout</text>
+        <line x1="210" y1="172" x2="210" y2="192"/><line x1="210" y1="192" x2="190" y2="208"/>
+        <line x1="190" y1="196" x2="190" y2="244"/>
+        <circle cx="200" cy="220" r="36"/>
+        <line x1="70" y1="220" x2="190" y2="220"/><circle cx="70" cy="220" r="4"/><text x="22" y="224">Vin</text>
+        <line x1="190" y1="232" x2="210" y2="248"/><line x1="210" y1="248" x2="210" y2="286"/>
+        <line x1="194" y1="286" x2="226" y2="286"/><line x1="200" y1="293" x2="220" y2="293"/><line x1="206" y1="300" x2="214" y2="300"/>
+        <path id="a-flow" class="flow" d="M210 24 V246"/>
+      </svg>
+      <div class="readouts" id="a-readouts"></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="panel"><h3>Transfer curve: V<sub>out</sub> against V<sub>in</sub></h3><div class="chartbox"><canvas id="a-ch1"></canvas></div></div>
+      <div class="panel"><h3>Load current against V<sub>in</sub></h3><div class="chartbox"><canvas id="a-ch2"></canvas></div></div>
+    </div>
+    <div class="panel" style="margin-top:18px"><h3>Level 1 observation table</h3><div id="a-table"></div></div>
+  </section>
+
+  <section class="section"><div class="callout"><b>Try this.</b> Raise the threshold and watch the switching point move on the transfer curve. Lower R<sub>B</sub> or raise &beta; and the transistor reaches saturation sooner. Raise R<sub>L</sub> and the current limit drops, so the LED dims even when the transistor is fully ON.</div>
+    <div class="callout q"><b>Bridge to quantum.</b> A transistor output is always read as exactly 0 or 1. Keep that in mind: in Module C a qubit stops behaving this way.</div></section>
+  <div class="pager"><a class="btn" href="#/home">Home</a><a class="btn primary" href="#/B">Next: logic gates</a></div>
+</main>
+
+<!-- ===================== MODULE B ===================== -->
+<main class="view" id="view-B">
+  <header class="mhead"><div><span class="pill">Level 2</span><h1 style="font-size:clamp(2rem,4vw,3.2rem)">Module B: logic gates</h1><p>Combine switches into gates. Build NOT, AND, OR, NAND, NOR and XOR, then meet the quantum NOT.</p></div><div class="lvl">B</div></header>
+
+  <section class="section"><h2>Theory</h2>
+    <div class="grid g3">
+      <div class="panel"><h3>Boolean algebra</h3>
+        <div class="formula">$$\text{NOT: } \bar A \quad \text{AND: } A\cdot B \quad \text{OR: } A+B$$</div>
+        <div class="formula">$$\text{NAND: } \overline{A\cdot B}\quad \text{NOR: } \overline{A+B}\quad \text{XOR: } A\oplus B=A\bar B+\bar A B$$</div>
+        <div class="formula">$$\overline{A\cdot B}=\bar A+\bar B\qquad \overline{A+B}=\bar A\cdot\bar B\quad(\text{De Morgan})$$</div></div>
+      <div class="panel"><h3>NAND is universal</h3>
+        <p>Every gate above can be built from NAND alone. For example NOT is NAND(A,A) and XOR needs four NANDs. The lab shows the internal nodes for the gate you select.</p>
+        <p>In CMOS a NAND needs only 4 transistors, which is why it is the workhorse of digital design.</p></div>
+      <div class="panel"><h3>Voltages decide the logic</h3>
+        <p>A gate must restore a degraded input to a clean level. The inverter transfer curve shows how, and the noise margins say how much disturbance a logic level can survive.</p>
+        <div class="formula">$$NM_H=V_{OH}-V_{IH},\qquad NM_L=V_{IL}-V_{OL}$$</div></div>
+    </div>
+    <div class="callout q"><b>Quantum counterpart.</b> The NOT gate is a matrix acting on a state: $$X=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad X|0\rangle=|1\rangle,\quad X|1\rangle=|0\rangle.$$ Unlike AND and OR, which throw information away, every quantum gate is reversible.</div>
+  </section>
+
+  <section class="section"><h2>Logic-gate simulator</h2>
+    <div class="grid g2">
+      <div class="panel">
+        <div class="seg" id="b-gates"></div>
+        <div class="row" id="b-inputs"></div>
+        <svg id="b-svg" viewBox="0 0 420 170" style="width:100%;max-width:520px"></svg>
+        <div class="readouts" id="b-readouts"></div>
+        <p class="small muted" id="b-cmos" style="margin-top:12px"></p>
+      </div>
+      <div class="panel"><h3>Truth table</h3><div id="b-table"></div>
+        <h3 style="margin-top:20px">Built from NAND gates only</h3><div id="b-nand"></div></div>
+    </div>
+  </section>
+
+  <section class="section"><h2>CMOS inverter transfer curve <small>the transistor NOT gate with real voltages</small></h2>
+    <div class="grid g2">
+      <div class="panel"><div id="b-vctl"></div><div class="readouts" id="b-vro"></div></div>
+      <div class="panel"><div class="chartbox tall"><canvas id="b-ch"></canvas></div></div>
+    </div>
+    <div class="callout"><b>Try this.</b> Make the PMOS weaker (lower k<sub>p</sub>) and the switching point V<sub>M</sub> slides below V<sub>DD</sub>/2 and the noise margins become unequal. A steeper transition means a larger gain and better restoration of noisy inputs.</div>
+  </section>
+  <div class="pager"><a class="btn" href="#/A">Previous: transistor</a><a class="btn primary" href="#/C">Next: quantum</a></div>
+</main>
+
+<!-- ===================== MODULE C ===================== -->
+<main class="view" id="view-C">
+  <header class="mhead q"><div><span class="pill q">Level 3</span><h1 style="font-size:clamp(2rem,4vw,3.2rem)">Module C: bit to qubit</h1><p>Same idea of a two-state system, one new ingredient: amplitudes. Explore a single qubit, then build circuits.</p></div><div class="lvl">C</div></header>
+
+  <section class="section"><h2>Theory</h2>
+    <div class="grid g3">
+      <div class="panel"><h3>Bit and qubit</h3>
+        <div class="formula">$$b\in\{0,1\}$$</div>
+        <div class="formula q">$$|\psi\rangle=\alpha|0\rangle+\beta|1\rangle,\quad |\alpha|^2+|\beta|^2=1$$</div>
+        <p>\(\alpha\) and \(\beta\) are complex amplitudes. They are not voltages and cannot be read directly.</p></div>
+      <div class="panel"><h3>Measurement</h3>
+        <p>Reading a qubit always gives 0 or 1, exactly like reading a transistor output. The difference is that the result is random, with the Born-rule probabilities, and the state collapses afterwards.</p>
+        <div class="formula q">$$P(0)=|\alpha|^2,\qquad P(1)=|\beta|^2$$</div></div>
+      <div class="panel"><h3>Bloch sphere</h3>
+        <p>Every single-qubit pure state is a point on a sphere, set by two angles.</p>
+        <div class="formula q">$$|\psi\rangle=\cos\tfrac{\theta}{2}|0\rangle+e^{i\varphi}\sin\tfrac{\theta}{2}|1\rangle$$</div>
+        <p class="small muted">A classical bit can only sit on the north or south pole.</p></div>
+    </div>
+    <div class="panel" style="margin-top:18px"><h3>Quantum gates and their classical cousins</h3>
+      <table><tr><th>Gate</th><th>Matrix</th><th>Action</th><th class="c">Classical analogue</th></tr>
+        <tr><td>X</td><td>\(\begin{pmatrix}0&1\\1&0\end{pmatrix}\)</td><td>|0&#10217; &harr; |1&#10217; (bit flip)</td><td class="c">NOT</td></tr>
+        <tr><td>Z</td><td>\(\begin{pmatrix}1&0\\0&-1\end{pmatrix}\)</td><td>flips the sign of |1&#10217; (phase flip)</td><td class="c">none</td></tr>
+        <tr><td>Y</td><td>\(\begin{pmatrix}0&-i\\i&0\end{pmatrix}\)</td><td>bit flip and phase flip</td><td class="c">none</td></tr>
+        <tr><td>H</td><td>\(\tfrac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}\)</td><td>|0&#10217; &rarr; (|0&#10217;+|1&#10217;)/&radic;2</td><td class="c">none: creates superposition</td></tr>
+        <tr><td>CNOT</td><td>flips target if control is 1</td><td>|a,b&#10217; &rarr; |a, a&oplus;b&#10217;</td><td class="c">XOR (reversible)</td></tr>
+      </table>
+      <div class="formula q">$$H|0\rangle=\frac{|0\rangle+|1\rangle}{\sqrt2}\;\Rightarrow\;P(0)=P(1)=50\%\qquad \text{Bell state: }\frac{|00\rangle+|11\rangle}{\sqrt2}=\text{CNOT}\,(H\otimes I)|00\rangle$$</div></div>
+  </section>
+
+  <section class="section q-lab"><h2>Lab 1: qubit explorer <small>drag the angles, then measure</small></h2>
+    <div class="grid g2">
+      <div class="panel"><div id="c-qctl"></div>
+        <div class="row"><button class="btn sm" data-q="0,0">|0&#10217;</button><button class="btn sm" data-q="180,0">|1&#10217; (X|0&#10217;)</button><button class="btn sm q" data-q="90,0">H|0&#10217; = |+&#10217;</button><button class="btn sm" data-q="90,180">|&minus;&#10217;</button><button class="btn sm" data-q="90,90">|+i&#10217;</button></div>
+        <div class="readouts" id="c-qro"></div>
+        <div class="row"><button class="btn q" id="c-measure">Measure again</button></div>
+      </div>
+      <div class="panel"><canvas class="bloch" id="c-bloch1" width="600" height="600"></canvas></div>
+    </div>
+    <div class="panel" style="margin-top:18px"><h3>Predicted probability against measured frequency</h3><div class="chartbox"><canvas id="c-ch1"></canvas></div></div>
+  </section>
+
+  <section class="section q-lab"><h2>Lab 2: quantum circuit builder</h2>
+    <div class="grid g2">
+      <div class="panel">
+        <div class="row"><label class="f">Qubits<select id="c-n"><option>1</option><option selected>2</option><option>3</option></select></label>
+          <label class="f">Gate<select id="c-gate"><option>H</option><option>X</option><option>Y</option><option>Z</option><option>S</option><option>T</option><option>RX</option><option>RY</option><option>RZ</option><option>CNOT</option><option>CZ</option><option>CCX</option></select></label>
+          <label class="f">Target<select id="c-target"></select></label>
+          <label class="f">Control(s)<select id="c-ctrl"></select></label>
+          <label class="f" id="c-angle-wrap" style="display:none">Angle (deg)<input id="c-angle" type="number" value="90" style="width:80px;padding:7px;border:1.5px solid var(--ink);border-radius:7px"></label>
+          <button class="btn q" id="c-add">Add gate</button></div>
+        <div class="row"><span class="muted small">Presets:</span>
+          <button class="btn sm" data-p="bell">Bell state</button><button class="btn sm" data-p="flip">X flip</button><button class="btn sm" data-p="super">Superposition</button><button class="btn sm" data-p="ghz">GHZ (3 qubits)</button><button class="btn sm" data-p="clear">Clear</button></div>
+        <div id="c-chips"></div>
+        <div class="row"><label class="f">Noise<select id="c-noise"><option value="none">none (ideal)</option><option value="bit_flip">bit flip</option><option value="phase_flip">phase flip</option><option value="depolarizing">depolarizing</option><option value="amplitude_damping">amplitude damping</option></select></label>
+          <label class="f">Error rate p<input type="range" id="c-p" min="0" max="0.3" step="0.01" value="0.05"></label>
+          <label class="f">Shots<select id="c-shots"><option>100</option><option selected>1024</option><option>8192</option></select></label>
+          <button class="btn primary" id="c-run">Run circuit</button></div>
+      </div>
+      <div class="panel"><h3>Circuit</h3><div class="cir" id="c-cir"></div>
+        <div class="readouts" id="c-ro"></div>
+        <p id="c-state" class="formula q" style="margin-top:12px"></p></div>
+    </div>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="panel"><h3>Measurement results</h3><div class="chartbox"><canvas id="c-ch2"></canvas></div></div>
+      <div class="panel"><h3>Per-qubit Bloch vectors</h3><div class="row" id="c-blochs" style="justify-content:space-around"></div><p class="small muted">A vector shorter than the sphere radius means that qubit is entangled or mixed by noise.</p></div>
+    </div>
+    <div class="callout q"><b>Try this.</b> Load the Bell state: the result is only 00 or 11, never 01 or 10, and each Bloch vector shrinks to a point at the centre. That correlation has no classical gate-level equivalent.</div>
+  </section>
+  <div class="pager"><a class="btn" href="#/B">Previous: logic gates</a><a class="btn q" href="#/D">Next: comparison</a></div>
+</main>
+
+<!-- ===================== MODULE D ===================== -->
+<main class="view" id="view-D">
+  <header class="mhead q"><div><span class="pill q">Level 4</span><h1 style="font-size:clamp(2rem,4vw,3.2rem)">Module D: classical against quantum</h1><p>Implement one logical function on both machines, then study what noise does to each.</p></div><div class="lvl">D</div></header>
+
+  <section class="section"><h2>Side-by-side comparison</h2>
+    <div class="panel"><table>
+      <tr><th>Classical</th><th class="q">Quantum</th></tr>
+      <tr><td>Bit: 0 or 1</td><td>Qubit: \(\alpha|0\rangle+\beta|1\rangle\)</td></tr>
+      <tr><td>Value 0/1</td><td>Amplitude \(\alpha,\beta\)</td></tr>
+      <tr><td>NOT</td><td>X</td></tr>
+      <tr><td>Logic operation</td><td>Quantum gate (unitary, reversible)</td></tr>
+      <tr><td>Output read-out</td><td>Measurement</td></tr>
+      <tr><td>Noise: \(V_{out}=V_{ideal}+n(t)\)</td><td>Quantum noise and decoherence</td></tr>
+      <tr><td>Deterministic</td><td>Probabilistic measurement</td></tr>
+    </table></div>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="panel"><div class="pipe"><span>Transistors</span><i>&rarr;</i><span>Logic gates</span><i>&rarr;</i><span>Digital output</span></div><p class="small muted">Inputs are voltages, the gate is a fixed network, the output is a voltage you can read as often as you like.</p></div>
+      <div class="panel"><div class="pipe q"><span>Qubits</span><i>&rarr;</i><span>Quantum gates</span><i>&rarr;</i><span>Measurement</span></div><p class="small muted">Inputs are prepared states, gates are unitary matrices, the output is a random sample you collect over many shots.</p></div>
+    </div>
+  </section>
+
+  <section class="section"><h2>Lab 1: the same function on both machines</h2>
+    <div class="grid g2">
+      <div class="panel">
+        <div class="seg" id="d-fn"></div>
+        <div class="row" id="d-in"></div>
+        <div class="seg" id="d-mode"><button data-v="basis" class="on">Basis inputs (0 or 1)</button><button data-v="superposition">Superposition inputs (H)</button></div>
+        <div id="d-ctl"></div>
+        <label class="f">Quantum noise channel<select id="d-ch"><option value="none">none</option><option value="bit_flip">bit flip</option><option value="phase_flip">phase flip</option><option value="depolarizing" selected>depolarizing</option></select></label>
+        <div class="row"><button class="btn primary" id="d-run">Run both circuits</button><span id="d-eq" class="badge-eq"></span></div>
+      </div>
+      <div class="panel" id="d-out"></div>
+    </div>
+    <div class="callout"><b>Reading the result.</b> The classical side is deterministic until noise pushes a voltage across the threshold. The quantum side is probabilistic by design: with basis inputs you want one outcome near 100%, with superposition inputs the circuit evaluates all input pairs at once and measurement samples one of them. The AND gate uses a Toffoli (CCX) because quantum gates must be reversible.</div>
+  </section>
+
+  <section class="section"><h2>Lab 2: how does classical noise compare with quantum noise?</h2>
+    <div class="formula">$$V_{out}=V_{ideal}+n(t),\quad n\sim\mathcal N(0,\sigma^2),\quad v_{n,rms}=\sqrt{4k_BTRB},\quad \text{BER}=Q\!\left(\frac{V_{CC}}{2\sigma}\right)$$</div>
+    <div class="grid g2">
+      <div class="panel"><h3>Transistor signal with additive noise</h3><div id="d-nctl"></div><div class="chartbox"><canvas id="d-ch1"></canvas></div><div class="readouts" id="d-nro"></div></div>
+      <div class="panel"><h3>Bit-error rate against noise</h3><div class="chartbox tall"><canvas id="d-ch2"></canvas></div><p class="small muted">Dots: Monte-Carlo with NumPy. Line: the Gaussian Q-function. Below about 1 V of noise on a 5 V signal, errors almost vanish: the threshold restores the bit.</p></div>
+    </div>
+    <div class="formula q">$$\rho\;\to\;\sum_k K_k\,\rho\,K_k^{\dagger}\qquad \text{bit flip: } K_1=\sqrt p\,X\quad\text{phase flip: } K_1=\sqrt p\,Z\quad\text{depolarizing: } \rho\to(1-p)\rho+\tfrac{p}{3}(X\rho X+Y\rho Y+Z\rho Z)$$</div>
+    <div class="grid g2">
+      <div class="panel q-lab"><h3>Quantum noise channels</h3>
+        <div class="row"><label class="f">Initial state<select id="d-state"><option value="plus">|+&#10217; = H|0&#10217;</option><option value="one">|1&#10217;</option><option value="zero">|0&#10217;</option></select></label>
+          <label class="f">Channel<select id="d-qch"><option value="bit_flip">bit flip</option><option value="phase_flip">phase flip</option><option value="depolarizing" selected>depolarizing</option><option value="amplitude_damping">amplitude damping</option><option value="phase_damping">phase damping</option></select></label></div>
+        <div class="ctl"><div class="ctl-top"><span>Error probability p</span><output id="d-qp-o">0.20</output></div><input type="range" id="d-qp" min="0" max="1" step="0.025" value="0.2"></div>
+        <div class="chartbox"><canvas id="d-ch3"></canvas></div></div>
+      <div class="panel q-lab"><h3>State under noise</h3><canvas class="bloch" id="d-bloch" width="600" height="600"></canvas><div class="readouts" id="d-qro"></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="panel q-lab"><h3>Decoherence over time</h3><div id="d-tctl"></div><div class="chartbox"><canvas id="d-ch4"></canvas></div>
+        <div class="formula q">$$P_1(t)=e^{-t/T_1},\qquad |\rho_{01}(t)|=\tfrac12 e^{-t/T_2},\quad T_2\le 2T_1$$</div></div>
+      <div class="panel"><h3>Conceptual comparison</h3>
+        <table><tr><th>Classical transistor noise</th><th class="q">Quantum noise</th></tr>
+          <tr><td>Adds a random voltage to a level</td><td>Acts as a channel on the whole state</td></tr>
+          <tr><td>Only a 0 to 1 flip is possible</td><td>Bit flips, phase flips and mixtures</td></tr>
+          <tr><td>Threshold re-digitises the signal after every gate</td><td>No re-digitising: errors accumulate</td></tr>
+          <tr><td>Signal can be copied and compared</td><td>No-cloning: cannot copy an unknown state</td></tr>
+          <tr><td>Phase has no meaning</td><td>Phase errors destroy interference</td></tr>
+          <tr><td>Fix: noise margins, repetition</td><td>Fix: error-correcting codes using syndromes</td></tr></table></div>
+    </div>
+  </section>
+
+  <section class="section"><h2>Lab 3: quantum error correction</h2>
+    <p>The 3-qubit repetition code stores one logical qubit in three. Two or more flips are needed to fool it.</p>
+    <div class="formula q">$$|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\;\to\;\alpha|000\rangle+\beta|111\rangle,\qquad p_L=3p^2-2p^3$$</div>
+    <div class="grid g2">
+      <div class="panel q-lab"><h3>Logical error against physical error</h3><div class="chartbox"><canvas id="d-ch5"></canvas></div><p class="small muted">Below p = 0.5 the code wins. For small p the logical error is about 3p&sup2;.</p></div>
+      <div class="panel q-lab"><h3>Inject a bit-flip error and decode</h3>
+        <div class="row"><label class="f">Error on qubit<select id="d-eq-q"><option>0</option><option>1</option><option>2</option></select></label>
+          <label class="f">State angle &theta; (deg)<input type="range" id="d-th" min="10" max="170" step="5" value="70"></label>
+          <button class="btn q" id="d-qec-run">Run</button></div>
+        <div class="cir" id="d-qcir"></div><div class="readouts" id="d-qec-ro"></div></div>
+    </div>
+  </section>
+  <div class="pager"><a class="btn" href="#/C">Previous: quantum</a><a class="btn primary" href="#/assess">Take the post-test</a></div>
+</main>
+
+<!-- ===================== ASSESSMENT ===================== -->
+<main class="view" id="view-assess">
+  <header class="mhead"><div><h1 style="font-size:clamp(2rem,4vw,3.2rem)">Learning assessment</h1><p>Take the pre-test before the modules and the post-test after. The framework is effective if the normalised gain is positive.</p></div></header>
+  <section class="section"><div class="grid g2"><div class="panel"><div class="seg" id="as-mode"><button data-v="pre" class="on">Pre-test</button><button data-v="post">Post-test</button></div><div id="as-body"></div></div>
+  <div class="panel"><h3>Results</h3><div id="as-res"></div><div class="formula">$$g=\frac{\text{post}-\text{pre}}{100-\text{pre}}$$</div><p class="small muted">Scores stay in this browser (local storage). Gain g above 0.3 is usually read as medium, above 0.7 as high.</p><button class="btn sm" id="as-reset">Clear saved scores</button></div></div></section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/moduleA.js"></script>
+<script src="/static/js/moduleB.js"></script>
+<script src="/static/js/moduleC.js"></script>
+<script src="/static/js/moduleD.js"></script>
+<script src="/static/js/home.js"></script>
+</body>
+</html>
